@@ -1,0 +1,23 @@
+# --- NetBeans Specific ---
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+.nb-gradle/
+
+# --- Compiled files ---
+*.class
+*.jar
+*.war
+*.ear
+
+# --- OS generated files ---
+.DS_Store
+Thumbs.db
+*.swp
+
+# --- Log files ---
+*.log
