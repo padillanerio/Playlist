@@ -8,14 +8,16 @@ package playlist;
  *
  * @author User
  */
-public class Nodo<T> 
+public class Nodo 
 {
-    T data;
-    Nodo<T> next;
+    Cancion cancion;
+    Nodo next;
+    Nodo prev;
     
-    public Nodo(T data){
-        this.data = data;
+    public Nodo(Cancion cancion){
+        this.cancion = cancion;
         this.next = null;
+        this.prev =  null;
         
     }
     
