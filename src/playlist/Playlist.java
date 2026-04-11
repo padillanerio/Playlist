@@ -6,7 +6,15 @@ package playlist;
 
 import java.util.Scanner;
 
+/**
+ * Punto de entrada de la aplicación de reproducción de playlist.
+ */
 public class Playlist {
+    /**
+     * Inicializa una lista de prueba, crea el controlador y comienza la reproducción.
+     *
+     * @param args argumentos de línea de comandos (no utilizados)
+     */
     public static void main(String[] args) {
         // 1. Instanciamos la Estructura de Datos
         Lista_DEC miPlaylist = new Lista_DEC();

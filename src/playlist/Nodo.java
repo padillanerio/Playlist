@@ -5,8 +5,9 @@
 package playlist;
 
 /**
+ * Nodo de una lista doblemente enlazada circular de canciones.
  *
- * @author User
+ * <p>Guarda la canción actual y las referencias al siguiente y anterior nodo.</p>
  */
 public class Nodo 
 {
@@ -14,6 +15,11 @@ public class Nodo
     Nodo next;
     Nodo prev;
     
+    /**
+     * Crea un nodo que encapsula una canción.
+     *
+     * @param cancion canción asociada al nodo
+     */
     public Nodo(Cancion cancion){
         this.cancion = cancion;
         this.next = null;

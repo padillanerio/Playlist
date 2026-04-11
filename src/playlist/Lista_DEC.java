@@ -4,11 +4,22 @@
  */
 package playlist;
 
+/**
+ * Implementa una lista doblemente enlazada circular de canciones.
+ *
+ * <p>Mantiene referencias a la cabeza, cola y al nodo actual (puntero)
+ * para permitir navegación bidireccional continua.</p>
+ */
 public class Lista_DEC {
     Nodo head;
     Nodo tail;
     Nodo puntero;
 
+    /**
+     * Agrega una canción al final de la lista y mantiene la circularidad.
+     *
+     * @param cancion canción a insertar
+     */
     public void agregar(Cancion cancion) {
         Nodo nodo = new Nodo(cancion);
 
@@ -30,6 +41,13 @@ public class Lista_DEC {
     }
 
     // Ya no comprobamos if(next == null) porque es circular.
+    /**
+     * Mueve el puntero a la siguiente canción y devuelve su referencia.
+     *
+     * <p>Antes de avanzar, detiene y libera el clip de la canción actual.</p>
+     *
+     * @return siguiente canción o null si la lista está vacía
+     */
     public Cancion siguienteCancion() {
         if (puntero != null) {
             puntero.cancion.pararyLiberar(); // Apaga la actual
@@ -39,6 +57,13 @@ public class Lista_DEC {
         return null;
     }
 
+    /**
+     * Mueve el puntero a la canción anterior y devuelve su referencia.
+     *
+     * <p>Antes de retroceder, detiene y libera el clip de la canción actual.</p>
+     *
+     * @return canción anterior o null si la lista está vacía
+     */
     public Cancion anteriorCancion() {
         if (puntero != null) {
             puntero.cancion.pararyLiberar();
