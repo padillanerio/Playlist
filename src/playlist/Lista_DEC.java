@@ -72,4 +72,26 @@ public class Lista_DEC {
         }
         return null;
     }
+    public String[] obtenerNombres() {
+        if (head == null) {
+            return new String[0];
+        }
+
+        // Primero contamos cuántos hay (o podrías usar un ArrayList)
+        int contador = 0;
+        Nodo actual = head;
+        do {
+            contador++;
+            actual = actual.next;
+        } while (actual != head);
+
+        // Creamos el arreglo y lo llenamos
+        String[] nombres = new String[contador];
+        actual = head;
+        for (int i = 0; i < contador; i++) {
+            nombres[i] = actual.cancion.getTitulo(); // Asumiendo que Cancion tiene getTitulo()
+            actual = actual.next;
+        }
+        return nombres;
+    }
 }

@@ -68,18 +68,15 @@ public class Cancion {
     /**
      * Pausa la reproducción guardando la posición actual para poder reanudar.
      */
-    public void parar() {
-        if (clip != null) {
+    public void pausar() {
+        if (clip != null && clip.isRunning()) {
             posicion = clip.getMicrosecondPosition();
             clip.stop();
         }
     }
 
-    /**
-     * Reanuda la reproducción desde la última posición almacenada.
-     */
     public void reanudar() {
-        if (clip != null) {
+        if (clip != null && !clip.isRunning()) {  // ← verifica que NO esté corriendo
             clip.setMicrosecondPosition(posicion);
             clip.start();
         }

@@ -4,13 +4,20 @@
  */
 package playlist;
 
+import java.io.File;
+import java.util.Arrays;
+
 /**
  * Orquesta las acciones de reproducción sobre la lista de canciones.
  *
- * <p>Actúa como capa de control para iniciar, pausar, reanudar y navegar
- * entre canciones.</p>
+ * Actúa como capa de control para iniciar, pausar, reanudar y navegar
+ * entre canciones.
  */
 public class Controlador {
+    
+    public String[] getNombresParaLista() {
+        return lista.obtenerNombres();
+    }
     private Lista_DEC lista;
 
     /**
@@ -25,7 +32,7 @@ public class Controlador {
     /**
      * Inicia la reproducción de la canción apuntada actualmente.
      *
-     * <p>Si la lista está vacía, informa al usuario por consola.</p>
+     * Si la lista está vacía, informa al usuario por consola.
      */
     public void iniciar() {
         if (lista.puntero != null) {
@@ -39,9 +46,9 @@ public class Controlador {
     /**
      * Pausa la canción actual conservando la posición de reproducción.
      */
-    public void pausar() {
-        if (lista.puntero != null) lista.puntero.cancion.parar();
-    }
+public void pausar() {
+    if (lista.puntero != null) lista.puntero.cancion.pausar(); // antes decía parar()
+}
 
     /**
      * Reanuda la canción actual desde la última posición pausada.
@@ -57,7 +64,7 @@ public class Controlador {
         Cancion nuevaCancion = lista.siguienteCancion();
         if (nuevaCancion != null) {
             nuevaCancion.prepararCancion();
-            nuevaCancion.reproducir();
+            nuevaCancion.reproducir();//los metodos 
             System.out.println("Reproduciendo: " + nuevaCancion.getTitulo());
         }
     }
@@ -71,6 +78,32 @@ public class Controlador {
             nuevaCancion.prepararCancion();
             nuevaCancion.reproducir();
             System.out.println("Reproduciendo: " + nuevaCancion.getTitulo());
+        }
+    }
+    public void cargarDesdeCarpeta(String rutaCarpeta) {
+        File carpeta = new File(rutaCarpeta);
+
+        if (carpeta.exists() && carpeta.isDirectory()) {
+            // 1. Obtener archivos y filtrar por .wav
+            File[] archivos = carpeta.listFiles((dir, nombre) -> nombre.toLowerCase().endsWith(".wav"));
+
+            if (archivos != null && archivos.length > 0) {
+                // 2. Ordenar alfabéticamente (Clave para Data Science: Sorting)
+                Arrays.sort(archivos, (a, b) -> a.getName().compareToIgnoreCase(b.getName()));
+
+                // 3. Limpiar lista actual si es necesario y llenar
+                for (File f : archivos) {
+                    // Extraer info básica del nombre del archivo: "Autor - Titulo.wav"
+                    // Aquí podrías usar Regex o Split para separar autor y título
+                    String nombreSinExt = f.getName().replace(".wav", "");
+
+                    // Creamos el objeto con la RUTA ABSOLUTA para que no falle
+                    Cancion nueva = new Cancion(nombreSinExt, "Desconocido", f.getName());
+                    // OJO: Tendrías que ajustar el constructor de Cancion para aceptar File o Path completo
+
+                    lista.agregar(nueva);
+                }
+            }
         }
     }
 }
