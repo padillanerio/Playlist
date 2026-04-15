@@ -80,6 +80,27 @@ public void pausar() {
             System.out.println("Reproduciendo: " + nuevaCancion.getTitulo());
         }
     }
+    
+    public void primero(){
+        Cancion nuevaCancion = lista.PrimerCancion();
+        if(nuevaCancion != null){
+            nuevaCancion.prepararCancion();
+            nuevaCancion.reproducir();
+            System.out.println("Reproduciendo: " + nuevaCancion.getTitulo());
+        }
+        
+    
+    }
+    
+    public void ultimo(){
+        Cancion nuevaCancion = lista.UltimaCancion();
+        if(nuevaCancion != null){
+            nuevaCancion.prepararCancion();
+            nuevaCancion.reproducir();
+            System.out.println("Reproduciendo: " + nuevaCancion.getTitulo());
+        }
+    
+    }
     public void cargarDesdeCarpeta(String rutaCarpeta) {
         File carpeta = new File(rutaCarpeta);
 

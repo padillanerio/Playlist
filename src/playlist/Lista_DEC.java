@@ -72,12 +72,31 @@ public class Lista_DEC {
         }
         return null;
     }
+    
+    public Cancion PrimerCancion(){
+    
+        if (puntero != null){
+            puntero.cancion.pararyLiberar();
+            puntero = head;
+            return puntero.cancion;
+        }
+        return null;
+    }
+    
+    public Cancion UltimaCancion(){
+        if (puntero != null){
+            puntero.cancion.pararyLiberar();
+            puntero = tail;
+            return puntero.cancion;
+        }
+        return null;
+    }
     public String[] obtenerNombres() {
         if (head == null) {
             return new String[0];
         }
 
-        // Primero contamos cuántos hay (o podrías usar un ArrayList)
+        // Primero contamos cuántos hay 
         int contador = 0;
         Nodo actual = head;
         do {

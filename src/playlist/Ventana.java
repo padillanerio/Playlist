@@ -72,6 +72,8 @@ private Estado estado = Estado.PARADO;
         jLabel2 = new javax.swing.JLabel();
         buttonLoad = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        Btnultimo = new javax.swing.JButton();
+        BtnPrimero = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -117,36 +119,52 @@ private Estado estado = Estado.PARADO;
 
         jLabel3.setText("z");
 
+        Btnultimo.setText("ultimo");
+        Btnultimo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BtnultimoMouseClicked(evt);
+            }
+        });
+
+        BtnPrimero.setText("Primero");
+        BtnPrimero.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnPrimero.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BtnPrimeroMouseClicked(evt);
+            }
+        });
+        BtnPrimero.addActionListener(this::BtnPrimeroActionPerformed);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 680, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(75, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(56, 56, 56)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(buttonLoad, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(100, 100, 100))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(BtnPrimero)
+                        .addGap(47, 47, 47)
                         .addComponent(buttonprev)
-                        .addGap(64, 64, 64)
+                        .addGap(58, 58, 58)
                         .addComponent(buttonPlay)
-                        .addGap(56, 56, 56)
+                        .addGap(69, 69, 69)
                         .addComponent(buttonNext)
-                        .addGap(187, 187, 187))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(labelGif, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(268, 268, 268))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addGap(51, 51, 51)
+                        .addComponent(Btnultimo))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 680, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(113, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(272, 272, 272)
+                .addComponent(labelGif, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -157,13 +175,15 @@ private Estado estado = Estado.PARADO;
                     .addComponent(buttonLoad, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelGif, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonPlay)
                     .addComponent(buttonNext)
-                    .addComponent(buttonprev))
+                    .addComponent(buttonprev)
+                    .addComponent(Btnultimo)
+                    .addComponent(BtnPrimero))
                 .addGap(30, 30, 30)
                 .addComponent(jLabel3))
         );
@@ -222,6 +242,22 @@ private Estado estado = Estado.PARADO;
       
     }//GEN-LAST:event_buttonNextMouseClicked
 
+    private void BtnPrimeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrimeroActionPerformed
+        // T
+    }//GEN-LAST:event_BtnPrimeroActionPerformed
+
+    private void BtnPrimeroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnPrimeroMouseClicked
+      manager.primero();
+      estado = Estado.REPRODUCIENDO;
+      labelGif.setVisible(true);
+    }//GEN-LAST:event_BtnPrimeroMouseClicked
+
+    private void BtnultimoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnultimoMouseClicked
+      manager.ultimo();
+      estado = Estado.REPRODUCIENDO;
+      labelGif.setVisible(true);
+    }//GEN-LAST:event_BtnultimoMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -246,6 +282,8 @@ private Estado estado = Estado.PARADO;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnPrimero;
+    private javax.swing.JButton Btnultimo;
     private javax.swing.JButton buttonLoad;
     private javax.swing.JButton buttonNext;
     private javax.swing.JButton buttonPlay;
